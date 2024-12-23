@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to GreenCart, your one-stop shop for fresh groceries delivered to your doorstep.">
+    <title>GreenCart - Home</title>
+    <link rel="stylesheet"
+ href=index.css>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpg" alt="GreenCart Logo">
+            <h1>GreenCart</h1>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+           <a href="loginpage.html">Login</a>
+           <a href="cart items.html">Cart Items</a>
+
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Fresh Groceries Delivered to Your Doorstep</h2>
+        <p>Shop fresh fruits, vegetables, and more at unbeatable prices. Experience convenience and quality with GreenCart.</p>
+        <button onclick="alert('Start shopping now!')">Shop Now</button>
+    </section>
+    
+
+    <section class="products">
+        <div class="product-card">
+            <img src="https://cdn.britannica.com/22/187222-050-07B17FB6/apples-on-a-tree-branch.jpg" alt="Fresh Apples">
+            <h3>Fresh Apples</h3>
+            <p>Sweet and juicy apples, freshly picked for you.</p>
+            <button data-product="Fresh Apples">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.bigbasket.com/media/uploads/p/m/1212499_5-cadbury-dairy-milk-chocolate-home-treats-pack.jpg?tr=w-154,q-80" alt="Carrots">
+            <h3>Chocolates Home Treats Pack</h3>
+            <p>"Indulge in the exquisite delight of chocolates—where every bite is a journey to pure bliss</p>
+            <button data-product="Carrots">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EZenExcPl5a_leFkFbwu5jGw2Dv3dmI2fw&s" alt="Pineapple">
+            <h3>Pineapple</h3>
+            <p>A tropical delight bursting with tangy sweetness and packed with vitamins.</p>
+            <button data-product="Pineapple">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREdfkVM32RbvVXMRYgka7c4i8YZ9Bx37dSdA&s" alt="Cow-Milk">
+            <h3>Fresh Cow Milk - 1 Liter Pack</h3>
+            <p>Creamy and Wholesome Dairy 🥛</p>
+            <button data-product="Fresh Cow Milk - 1 Liter Pack">Add to Cart</button>
+        </div>
+        
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GreenCart. All rights reserved.<a href="policy.html"><u>Privacy Policy</u></a></p>
+    </footer>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.product-card button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productName = event.target.getAttribute('data-product');
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // Check if the product is already in the cart
+                const productIndex = cart.findIndex(item => item.name === productName);
+
+                if (productIndex !== -1) {
+                    // If the product is already in the cart, increment its quantity
+                    cart[productIndex].quantity += 1;
+                } else {
+                    // If the product is not in the cart, add it
+                    cart.push({ name: productName, quantity: 1 });
+                }
+
+                // Save the updated cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert(`${productName} added to cart!`);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accessible and responsive grocery website">
+    <title>GreenCart</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        header img {
+            height: 40px;
+            width: auto;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        header .home-link {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .product {
+            background: white;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product h2 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .product p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .buttons button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+
+        .buy-now {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        .buy-now:hover {
+            background-color: #e64a19;
+        }
+
+        @media (min-width: 768px) {
+            .product {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .product img {
+                margin-right: 1rem;
+            }
+
+            .buttons {
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="logo.jpg" alt="Grocery Store Logo" />
+            <h1>GreenCart</h1>
+        </div>
+        <a href="home.html" class="home-link">Back to Home Page</a>
+    </header>
+
+    <main>
+        <div class="product">
+            <img src="https://cdn.britannica.com/22/187222-050-07B17FB6/apples-on-a-tree-branch.jpg" alt="Fresh Apples" />
+            <div>
+                <h2>Fresh Apples</h2>
+                <p>Price:₹400/kg </p>
+                <div class="buttons">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://www.bigbasket.com/media/uploads/p/m/255843_18-daawat-super-basmati-5-kg.jpg?tr=w-154,q-80" alt="Whole Grain Bread" />
+            <div>
+                <h2>Rice</h2>
+                <p>Price:₹626.99 for 5kg </p>
+                <div class="buttons">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://www.bigbasket.com/media/uploads/p/m/1207311_8-surf-excel-matic-liquid-detergent-front-load.jpg?tr=w-154,q-80" alt="Organic Milk" />
+            <div>
+                <h2>Matic Front Load Liquid Detergent</h2>
+                <p>Price: 880 Rs</p>
+                <div class="buttons">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.tasteofhome.com/wp-content/uploads/2019/11/sugar-shutterstock_615908132.jpg" alt="Sugar" />
+            <div>
+                <h2>Sugar</h2>
+                <p>Price:₹44/kg</p>
+                <div class="buttons">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.bigbasket.com/media/uploads/p/m/40019375_20-cadbury-perk-chocolate-home-treats.jpg?tr=w-154,q-80" alt="chocolates" />
+            <div>
+                <h2>Chocolate Coated Wafer Home Treats</h2>
+                <p>Price:₹85 </p>
+                <div class="buttons">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function addToCart() {
+            alert("Item added to cart!");
+        }
+
+        function buyNow() {
+            window.location.href = "payment.htm";
+        }
+        
+        function addToCart(productName, productDescription) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const productIndex = cart.findIndex(item => item.name === productName);
+
+            if (productIndex !== -1) {
+                cart[productIndex].quantity += 1;
+            } else {
+                cart.push({
+                    name: productName,
+                    description: productDescription,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} added to your cart!`);
+        }
+    
+    </script>
+
+</body>
+</html>

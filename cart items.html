@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your cart items here.">
+    <title>Cart</title>
+    <link rel="stylesheet" href="cart items.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            <h1</h1>
+        </div>
+        <nav>
+            <a href="index.html">Main Page</a>
+            <a href="contact.html">Contacts</a>
+            <a href="loginpage.css">Login</a>
+            <a href="signup.html">SignUp</a>
+            <a href="product.html">Products</a>
+           
+        </nav>
+    </header>
+
+    <section class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <button onclick="clearCart()">Clear Cart</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GreenCart All Rights Reserved</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    const productElement = document.createElement('div');
+                    productElement.classList.add('cart-item');
+                    productElement.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                    `;
+                    cartItemsContainer.appendChild(productElement);
+                });
+            }
+        };
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            alert('Your cart has been cleared!');
+            window.location.reload(); // Refresh the page to reflect the changes
+        }
+    </script>
+</body>
+</html>

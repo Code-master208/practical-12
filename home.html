@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to GreenCart, your one-stop shop for fresh groceries delivered to your doorstep.">
+    <title>GreenCart - Your Grocery Destination</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="icon" href="logo.jpg" type="image/jpg">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.jpg" alt="GreenCart Logo">
+            <h1>GreenCart</h1>
+        </div>
+        <nav>
+           <a href="index.html" >Main Page</a>
+            <a href="product.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart items.html">Cart Items</a>
+            <button onclick="alert('Directing to login page!')"><a href="loginpage.htm"></a>Login</button>
+            <button onclick="alert('Directing to registration page!')"><a href="signup.htm"></a>Sign Up</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Discover Freshness Everyday</h2>
+        <p>Shop fresh fruits, vegetables, dairy, and more with unbeatable convenience and quality.</p>
+        <button class="shop-now">Shop Now</button>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Shop by Categories</h2>
+        <div class="category-cards">
+            <div class="category-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMkBbQ_DxYAZu4rfOP4BgYo9NPektkMPob7Q&s" alt="Fresh Fruits">
+                <h3>Vegetables&Fruits</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://www.bigbasket.com/media/uploads/p/m/277866_17-cadbury-powder-mix-hot-chocolate-drink.jpg?tr=w-154,q-80" alt="Green Vegetables">
+                <h3>Beverages</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSojvB3ax7IoevF0iHij2lbV9XyLvcIN75OOw&s" alt="Dairy Products">
+                <h3>Dairy</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDDBZ7oZzt1ovQE46WRYpzbsvwx9x_hVPEg&s" alt="Delicious Snacks">
+                <h3>Snacks</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://www.bigbasket.com/media/uploads/p/m/40211319_7-ariel-matic-liquid-detergent-front-load.jpg?tr=w-154,q-80" alt="Delicious Snacks">
+                <h3>Cleaning & Household</h3>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-cards">
+            <div class="product-card">
+                <img src="https://www.bizzbuzz.news/h-upload/2021/05/10/1050604-oraganic-mangoes.webp" alt="Organic Mangoes">
+                <h3>Organic Mangoes</h3>
+                <p>Juicy and sweet, grown without harmful chemicals.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/51FGF8WTq1L._AC_UF1000,1000_QL80_.jpg" alt="Greek Yogurt">
+                <h3>Greek Yogurt</h3>
+                <p>Rich in protein and perfect for a healthy diet.</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews">
+        <h2>What Our Customers Say</h2>
+        <div class="review">
+            <p>"GreenCart has completely changed how I shop for groceries! The quality is unmatched."</p>
+            <p>- Priya K.</p>
+        </div>
+        <div class="review">
+            <p>"Fast delivery and fresh products every time. Highly recommend GreenCart!"</p>
+            <p>- Rahul S.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 GreenCart. All rights reserved. <a href="policy.html"><u>Privacy Policy</u></a></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.product-card button').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Item added to cart!');
+            });
+        });
+
+        document.querySelector('.shop-now').addEventListener('click', () => {
+            alert('Explore Now!');
+        });
+    </script>
+</body>
+</html>

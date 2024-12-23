@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('https://static.blog.bolt.eu/LIVE/wp-content/uploads/2022/04/30135418/grocery-list-1024x536.jpg'); /* Add your background image */
+            background-size: cover; /* Ensures the image covers the full viewport */
+            background-repeat: no-repeat; /* Prevent tiling */
+            background-position: center; /* Center the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+            flex-direction: column; /* Align content in a column to center footer */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px; /* Increased width */
+            padding: 30px; /* Increased padding for more space inside */
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .green-heading {
+            font-size: 30px;
+            color: green;
+        }
+
+        .user-login-heading {
+            font-size: 24px;
+            color: blue;
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%; /* Ensures inputs take the full width of the container */
+            padding: 15px; /* Adds more padding for larger inputs */
+            font-size: 18px; /* Larger text size for readability */
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .end-form {
+            text-align: center; /* Center-aligns the text */
+            margin-top: 20px; /* Adds space above the section */
+            font-size: 14px; /* Adjusts text size for readability */
+            color: #555; /* Sets a subtle text color */
+        }
+
+        .end-form p {
+            margin: 5px 0; /* Controls spacing between paragraphs */
+        }
+
+        .end-form a {
+            color: #007BFF; /* Link color */
+            text-decoration: none; /* Removes underline */
+            font-weight: bold; /* Highlights the links */
+        }
+
+        .end-form a:hover {
+            text-decoration: underline; /* Adds underline on hover for clarity */
+            color: #0056b3; /* Darkens link color on hover */
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 10px; /* Center logo and add space below it */
+            width: 100px; /* Adjust logo size */
+            height: auto; /* Maintain aspect ratio */
+            opacity: 0.9; /* Make logo slightly transparent */
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .notification {
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            visibility: hidden; /* Hidden by default */
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s ease-in-out;
+        }
+
+        .notification.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <!-- Logo -->
+            <img src="logo.jpg" alt="Logo" class="logo">
+            
+            <!-- Headings -->
+            <h2 class="green-heading">Green Cart</h2>
+            <h2 class="user-login-heading">User Login</h2>
+            
+            <!-- Form -->
+            <form>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+               
+                <button type="submit" class="btn">Submit
+                  
+                </button>
+                
+                
+                
+                <div class="end-form">
+                    <p><a href="resetpassword.html">Forgot Your Password?</a></p>
+                    <p>Don't have an account? <a href="signup.htm">Register here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="notification" class="notification">
+      Login successful! Welcome to Green Cart.
+  </div>
+    <footer class="footer">
+        &copy; 2024 Green Cart. All rights reserved.
+    </footer>
+
+    <script>
+        // JavaScript for handling form submission and showing notification
+        document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission behavior
+    
+            // Get username and password inputs
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+    
+            // Perform simple validation (ensure inputs are not empty)
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+    
+            // Save user data to localStorage
+            localStorage.setItem("username", username);
+    
+            // Display success notification
+            const notification = document.getElementById("notification");
+            notification.classList.add("show");
+    
+            // Redirect to home page after 3 seconds
+            setTimeout(function () {
+                notification.classList.remove("show");
+                window.location.href = "home.html"; // Redirect to home page
+            }, 3000);
+        });
+    </script>
+    
+</body>
+</html>
