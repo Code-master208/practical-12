@@ -1,112 +1,77 @@
-
-body, h1, h2, h3, p, a, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    color: #343a40;
-    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
-
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
 header .logo img {
-    height: 50px;
-    margin-right: 10px;
-}
-
-header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
 }
 
 header nav a {
-    margin-left: 20px;
-    color: #fff;
+    margin: 0 10px;
+    color: white;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
 }
-
-header nav a:hover {
-    text-decoration: underline;
-}
-
 
 .cart-section {
-    padding: 20px;
     text-align: center;
-}
-
-.cart-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #007bff;
+    padding: 20px;
 }
 
 .cart-items {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cart-item {
-    border-bottom: 1px solid #e9ecef;
-    padding: 10px 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-.cart-item h3 {
-    font-size: 1.2rem;
-    color: #495057;
+.cart-item:last-child {
+    border-bottom: none;
 }
-
-.cart-item p {
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
 
 .clear-cart-btn {
-    margin-top: 20px;
+    background-color: #f44336;
+    color: white;
     padding: 10px 20px;
-    background-color: #dc3545;
-    color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
 .clear-cart-btn:hover {
-    background-color: #c82333;
+    background-color: #d32f2f;
 }
 
-
 footer {
+    background-color: #4CAF50;
+    color: white;
     padding: 10px;
     text-align: center;
-    background-color: #343a40;
-    color: #fff;
-    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
