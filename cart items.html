@@ -36,30 +36,32 @@
     </footer>
 
     <script>
-        window.onload = function() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Function to display the cart items
+        document.addEventListener('DOMContentLoaded', () => {
             const cartItemsContainer = document.getElementById('cart-items');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+            // If the cart is empty, display a message
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
             } else {
+                // Otherwise, display all items in the cart
                 cart.forEach(item => {
-                    const productElement = document.createElement('div');
-                    productElement.classList.add('cart-item');
-                    productElement.innerHTML = `
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <p><strong>${item.name}</strong></p>
                         <p>Quantity: ${item.quantity}</p>
                     `;
-                    cartItemsContainer.appendChild(productElement);
+                    cartItemsContainer.appendChild(cartItem);
                 });
             }
-        };
+        });
 
+        // Function to clear the cart
         function clearCart() {
             localStorage.removeItem('cart');
-            alert('Your cart has been cleared!');
-            window.location.reload(); // Refresh the page to reflect the changes
+            document.getElementById('cart-items').innerHTML = "<p>Your cart is empty.</p>";
         }
     </script>
 </body>
