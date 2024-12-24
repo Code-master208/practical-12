@@ -48,48 +48,23 @@
     </div>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function(event) {
-            event.preventDefault(); 
-            
-            
-            const fullName = document.getElementById("full-name").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirm-password").value;
+        document.querySelector("#signup-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission behavior
 
-         
-            if (password !== confirmPassword) {
-                alert("Passwords do not match.");
-                return;
-            }
+        // Get signup form inputs
+        const username = document.getElementById("signup-username").value;
+        const password = document.getElementById("signup-password").value;
 
-            
-            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+        // Retrieve existing users from localStorage
+        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || {};
 
-            
-            const userExists = existingUsers.some(user => user.email === email);
-            if (userExists) {
-                alert("User already exists with this email.");
-                return;
-            }
+        // Save the new user
+        registeredUsers[username] = password;
+        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
 
-           
-            const newUser = { fullName, email, password };
-            existingUsers.push(newUser);
-
-           
-            localStorage.setItem("users", JSON.stringify(existingUsers));
-
-            
-            const notification = document.getElementById("notification");
-            notification.classList.add("show");
-
-            
-            setTimeout(() => {
-                notification.classList.remove("show");
-                window.location.href = "loginpage.html"; 
-            }, 2000);
-        });
+        alert("Registration successful! You can now log in.");
+        window.location.href = "login.html"; // Redirect to login page
+    });
     </script>
 </body>
 </html>
