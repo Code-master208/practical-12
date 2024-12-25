@@ -16,13 +16,13 @@
             <h1>GreenCart</h1>
         </div>
         <nav>
-           <a href="index.html" >Main Page</a>
+            <a href="index.html">Main Page</a>
             <a href="product.html">Products</a>
             <a href="about.html">About Us</a>
             <a href="contact.html">Contact</a>
             <a href="cart items.html">Cart Items</a>
-            <button onclick="alert('Directing to login page!')"><a href="loginpage.html"></a>Login</button>
-            <button onclick="alert('Directing to registration page!')"><a href="signup.html"></a>Sign Up</button>
+            <button onclick="alert('Directing to login page!')"><a href="loginpage.html">Login</a></button>
+            <button onclick="alert('Directing to registration page!')"><a href="signup.html">Sign Up</a></button>
         </nav>
     </header>
 
@@ -33,64 +33,28 @@
         <button class="shop-now">Shop Now</button>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h2>Shop by Categories</h2>
-        <div class="category-cards">
-            <div class="category-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMkBbQ_DxYAZu4rfOP4BgYo9NPektkMPob7Q&s" alt="Fresh Fruits">
-                <h3>Vegetables&Fruits</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://www.bigbasket.com/media/uploads/p/m/277866_17-cadbury-powder-mix-hot-chocolate-drink.jpg?tr=w-154,q-80" alt="Green Vegetables">
-                <h3>Beverages</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSojvB3ax7IoevF0iHij2lbV9XyLvcIN75OOw&s" alt="Dairy Products">
-                <h3>Dairy</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiDDBZ7oZzt1ovQE46WRYpzbsvwx9x_hVPEg&s" alt="Delicious Snacks">
-                <h3>Snacks</h3>
-            </div>
-            <div class="category-card">
-                <img src="https://www.bigbasket.com/media/uploads/p/m/40211319_7-ariel-matic-liquid-detergent-front-load.jpg?tr=w-154,q-80" alt="Delicious Snacks">
-                <h3>Cleaning & Household</h3>
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Products Section -->
     <section class="featured-products">
         <h2>Featured Products</h2>
         <div class="product-cards">
-            <div class="product-card">
+            <!-- Product 1: Organic Mangoes -->
+            <div class="product-card" data-product="Organic Mangoes" data-price="300">
                 <img src="https://www.bizzbuzz.news/h-upload/2021/05/10/1050604-oraganic-mangoes.webp" alt="Organic Mangoes">
                 <h3>Organic Mangoes</h3>
                 <p>Juicy and sweet, grown without harmful chemicals.</p>
-                <button>Add to Cart</button>
-                <a href="payment.html"><button class="buy-now">Buy Now</button></a> <!-- Buy Now Button -->
+                <p>Price: ₹300 per kg</p>
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
             </div>
-            <div class="product-card">
+            <!-- Product 2: Greek Yogurt -->
+            <div class="product-card" data-product="Greek Yogurt" data-price="150">
                 <img src="https://m.media-amazon.com/images/I/51FGF8WTq1L._AC_UF1000,1000_QL80_.jpg" alt="Greek Yogurt">
                 <h3>Greek Yogurt</h3>
                 <p>Rich in protein and perfect for a healthy diet.</p>
-                <button>Add to Cart</button>
-                <a href="payment.html"><button class="buy-now">Buy Now</button></a> <!-- Buy Now Button -->
+                <p>Price: ₹150</p>
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
             </div>
-        </div>
-    </section>
-
-    <!-- Customer Reviews Section -->
-    <section class="reviews">
-        <h2>What Our Customers Say</h2>
-        <div class="review">
-            <p>"GreenCart has completely changed how I shop for groceries! The quality is unmatched."</p>
-            <p>- Priya K.</p>
-        </div>
-        <div class="review">
-            <p>"Fast delivery and fresh products every time. Highly recommend GreenCart!"</p>
-            <p>- Rahul S.</p>
         </div>
     </section>
 
@@ -100,31 +64,45 @@
     </footer>
 
     <script>
-     document.querySelectorAll('.product-card button').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productCard = event.target.closest('.product-card');
-            const productName = productCard.querySelector('h3').textContent;
-            const productDescription = productCard.querySelector('p').textContent;
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add to Cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productCard = event.target.closest('.product-card');
+                    const productName = productCard.getAttribute('data-product');
+                    const productPrice = parseInt(productCard.getAttribute('data-price'));
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Get cart items from local storage or initialize an empty array
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    // Check if the product is already in the cart
+                    const productIndex = cart.findIndex(item => item.name === productName);
 
-            // Add the selected item to the cart
-            cartItems.push({
-                name: productName,
-                description: productDescription
+                    if (productIndex !== -1) {
+                        // If the product is already in the cart, increment its quantity
+                        cart[productIndex].quantity += 1;
+                    } else {
+                        // If the product is not in the cart, add it
+                        cart.push({ name: productName, quantity: 1, price: productPrice });
+                    }
+
+                    // Save the updated cart to localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+
+                    alert(`${productName} added to cart!`);
+                });
             });
 
-            // Save updated cart items back to local storage
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            // Buy Now functionality
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', () => {
+                    window.location.href = 'payment.html'; // Redirect to payment form
+                });
+            });
 
-            alert('Item added to cart!');
+            // Shop Now button functionality
+            document.querySelector('.shop-now').addEventListener('click', () => {
+                window.location.href = 'product.html'; // Redirect to product page
+            });
         });
-    });
-
-    document.querySelector('.shop-now').addEventListener('click', () => {
-        alert('Explore Now!');
-    });
     </script>
 </body>
 </html>
