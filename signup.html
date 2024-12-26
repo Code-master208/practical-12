@@ -12,6 +12,8 @@
         label { display: block; margin-top: 10px; }
         input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
         button { width: 100%; padding: 10px; background: green; color: white; border: none; border-radius: 4px; margin-top: 20px; }
+        .back-home-button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; margin-top: 10px; }
+        .back-home-button:hover { background: #0056b3; cursor: pointer; }
         .notification { visibility: hidden; opacity: 0; background: green; color: white; text-align: center; padding: 10px; border-radius: 5px; margin: 10px; transition: opacity 0.3s ease-in-out; }
         .notification.show { visibility: visible; opacity: 1; }
         .logo { text-align: center; margin-bottom: 20px; }
@@ -42,29 +44,50 @@
             
             <button type="submit">Sign Up</button>
         </form>
+        
+        <!-- Back to Home Page Button -->
+        <button class="back-home-button" onclick="window.location.href='index.html'">Back to Home Page</button>
+
         <div id="notification" class="notification">
             Registration successful! Redirecting to login page...
         </div>
     </div>
 
     <script>
-        document.querySelector("#signup-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission behavior
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            const fullName = document.getElementById("full-name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
 
-        // Get signup form inputs
-        const username = document.getElementById("signup-username").value;
-        const password = document.getElementById("signup-password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
 
-        // Retrieve existing users from localStorage
-        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || {};
+            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Save the new user
-        registeredUsers[username] = password;
-        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+            const userExists = existingUsers.some(user => user.email === email);
+            if (userExists) {
+                alert("User already exists with this email.");
+                return;
+            }
 
-        alert("Registration successful! You can now log in.");
-        window.location.href = "login.html"; // Redirect to login page
-    });
+            const newUser = { fullName, email, password };
+            existingUsers.push(newUser);
+
+            localStorage.setItem("users", JSON.stringify(existingUsers));
+
+            const notification = document.getElementById("notification");
+            notification.classList.add("show");
+
+            setTimeout(() => {
+                notification.classList.remove("show");
+                window.location.href = "loginpage.html"; 
+            }, 2000);
+        });
     </script>
 </body>
 </html>
