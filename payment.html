@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -56,6 +56,26 @@
         .hidden {
             display: none;
         }
+
+        /* Add some space for the "Back to Home" button */
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -94,6 +114,9 @@
 
             <button type="submit">Buy Now</button>
         </form>
+
+        <!-- Back to Home Button -->
+        <a href="index.html" class="back-btn">Back to Home</a>
     </main>
 
     <script>
