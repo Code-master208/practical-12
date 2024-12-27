@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -157,8 +157,8 @@
             };
             localStorage.setItem("paymentData", JSON.stringify(paymentData));
 
-            // Show notification
-            alert("Payment successful! Your order will arrive soon.");
+            // Redirect to the payment success page after submission
+            window.location.href = "paymentsuccess.html"; // Assuming "payment-success.html" is your success page
         });
     </script>
 </body>
