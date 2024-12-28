@@ -91,7 +91,7 @@
             <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" maxlength="10" required>
 
             <label for="payment-method">Payment Method</label>
             <select id="payment-method" name="payment-method" required>
@@ -144,6 +144,12 @@
             const phone = document.getElementById("phone").value;
             const paymentMethod = document.getElementById("payment-method").value;
             const onlineMethod = document.getElementById("online-method").value;
+
+            // Validate phone number (must be exactly 10 digits)
+            if (phone.length !== 10) {
+                alert("Please enter a valid phone number with exactly 10 digits.");
+                return; // Stop form submission
+            }
 
             // Save data locally
             const paymentData = {
