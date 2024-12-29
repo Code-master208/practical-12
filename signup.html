@@ -18,6 +18,9 @@
         .notification.show { visibility: visible; opacity: 1; }
         .logo { text-align: center; margin-bottom: 20px; }
         .logo img { width: 150px; height: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 8px; text-align: left; }
     </style>
 </head>
 <body>
@@ -45,15 +48,47 @@
             <button type="submit">Sign Up</button>
         </form>
         
-        <!-- Back to Home Page Button -->
         <button class="back-home-button" onclick="window.location.href='index.html'">Back to Home Page</button>
 
         <div id="notification" class="notification">
             Registration successful! Redirecting to login page...
         </div>
+
+        <!-- Table to display user data -->
+        <h2>Registered Users</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
     </div>
 
     <script>
+        // Function to display the table with data
+        function displayTable() {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const tableBody = document.getElementById("userTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = "";  // Clear existing table rows
+            
+            // Loop through all users and add them to the table
+            users.forEach(user => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${user.fullName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.password}</td>
+                `;
+            });
+        }
+
+        // Event listener for form submission
         document.getElementById("signupForm").addEventListener("submit", function(event) {
             event.preventDefault(); 
             
@@ -87,7 +122,13 @@
                 notification.classList.remove("show");
                 window.location.href = "loginpage.html"; 
             }, 2000);
+
+            // After registration, update the displayed table
+            displayTable();
         });
+
+        // Display table on page load
+        window.onload = displayTable;
     </script>
 </body>
 </html>
